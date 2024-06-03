@@ -1,0 +1,51 @@
+---
+title: "Execises"
+output: html_document
+date: "2024-06-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load, include=FALSE}
+library('tidyverse')
+```
+
+## R Markdown
+
+
+
+```{r }
+
+
+dat <- read.csv('./Data/femaleMiceWeights.csv')
+class(dat)
+chowvals <- filter(dat, Diet=='chow') %>% select(Bodyweight)
+
+dat <- read.csv('./Data/msleep_ggplot2.csv')
+class(dat)
+primates <- dat %>% filter(order == 'Primates')
+nrow(primates)
+class(primates)
+sleep_primates <-  primates %>% select(sleep_total)
+class(sleep_primates)
+
+average_sleep <- mean(sleep_primates$sleep_total)
+average_sleep <- mean(unlist(sleep_primates))
+asleep <- dat %>% 
+  filter(order == 'Primates') %>% 
+  select(sleep_total) %>% 
+  summarise(mean = mean(sleep_total))
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+
